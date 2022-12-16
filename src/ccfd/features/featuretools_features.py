@@ -7,7 +7,7 @@ logger = logging.getLogger(__name__)
 
 FEATURE_MATRIX_PATH = 'data/02_intermediate/feature_matrix.parquet.gzip'
 
-def generate_features():
+def get_feature_matrix():
     es = ft.EntitySet(id="app")    
     es = add_dataframes(es)
     es = add_relationships(es)
