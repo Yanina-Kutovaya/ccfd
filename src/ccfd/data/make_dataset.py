@@ -1,6 +1,7 @@
 import logging
 import pandas as pd
 from typing import Optional
+from src.ccfd.data.make_dataset import load_data
 
 logger = logging.getLogger(__name__)
 
