@@ -2,6 +2,7 @@ import logging
 import pandas as pd
 import featuretools as ft
 from woodwork.logical_types import Categorical, AgeFractional, Ordinal, BooleanNullable
+from src.ccfd.data.make_dataset import load_data
 
 logger = logging.getLogger(__name__)
 
