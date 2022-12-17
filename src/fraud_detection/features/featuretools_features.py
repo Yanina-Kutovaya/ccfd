@@ -6,17 +6,16 @@ from src.fraud_detection.data.make_dataset import load_data
 
 logger = logging.getLogger(__name__)
 
-FEATURE_MATRIX_PATH = 'data/02_intermediate/feature_matrix.parquet.gzip'
+FEATURE_MATRIX_PATH = "data/02_intermediate/feature_matrix.parquet.gzip"
+
 
 def get_feature_matrix():
-    es = ft.EntitySet(id="app")    
+    es = ft.EntitySet(id="app")
     es = add_dataframes(es)
     es = add_relationships(es)
     feature_matrix, feature_defs = generate_features(es)
     feature_matrix = select_features(feature_matrix, feature_defs)
     save_features(feature_matrix)
-
-    return feature_matrix
 
 
 def add_dataframes(es):
@@ -136,4 +135,12 @@ def save_features(feature_matrix, feature_matrix_path=None):
     if feature_matrix_path is None:
         feature_matrix_path = FEATURE_MATRIX_PATH
 
-    feature_matrix.to_parquet(feature_matrix_path, compression='gzip')
+    feature_matrix.to_parquet(feature_matrix_path, compression="gzip")
+
+
+if __name__ == "__main__":
+    try:
+        get_feature_matrix()
+    except Exception as e:
+        logging.critical(e)
+        sys.exit(1)
